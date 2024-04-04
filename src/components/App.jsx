@@ -1,28 +1,96 @@
 import { PureComponent } from 'react';
+import { nanoid } from 'nanoid';
 
+import { Titles } from 'common/helpers/titles';
 import Section from '../common/components/Section/Section';
+import Heading from 'common/components/Heading/Heading';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
 import { Container } from '../common/components/Container/Container.styled';
+import Filter from './Filter/Filter';
 
-const Titles = {
-  PHONEBOOK: 'Phonebook',
-  CONTACTS: 'Contacts',
+const INITIAL_STATE = {
+  contacts: [
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  ],
+  filter: '',
 };
 
 class App extends PureComponent {
-  state = {
-    contacts: [],
-    name: '',
+  state = INITIAL_STATE;
+
+  contactNameExists = name => {
+    const { contacts } = this.state;
+
+    return contacts.some(contact => contact.name === name);
+  };
+
+  filterContacts = filterQuery => {
+    this.setState({ filter: filterQuery });
+  };
+
+  showFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+
+    return contacts?.filter(({ name }) =>
+      name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
+  addContact = contact => {
+    const { name } = contact;
+
+    if (this.contactNameExists(name)) {
+      alert(`${name} already exists in the phonebook.`);
+      return;
+    }
+
+    const newContact = { ...contact, id: nanoid(6) };
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newContact],
+    }));
+  };
+
+  deleteContact = id => {
+    const { contacts } = this.state;
+
+    const updatedContacts = contacts?.filter(contact => contact.id !== id);
+
+    this.setState({
+      contacts: updatedContacts,
+    });
   };
 
   render() {
+    const filteredContacts = this.showFilteredContacts();
+
     return (
       <Container>
-        <Section title={Titles.PHONEBOOK}></Section>
+        <Section>
+          <Heading level={1} title={Titles.PHONEBOOK} />
+          <ContactForm addContact={this.addContact} />
 
-        <Section title={Titles.CONTACTS}></Section>
+          <Heading level={2} title={Titles.CONTACTS} />
+          <Filter filterContacts={this.filterContacts} />
+
+          <ContactList
+            contacts={filteredContacts}
+            deleteContact={this.deleteContact}
+          />
+        </Section>
       </Container>
     );
   }
 }
 
 export default App;
+
+// App - state: contacts, filter // handleAddContact / handleFilter / handleDeleteContact
+// ContactForm - state: name, tel // onSubmit={handleSubmitContact}
+// ContactList - props: filteredContacts // onDelete
+// Filter - // onChange of input - handleFilter
+//
+//

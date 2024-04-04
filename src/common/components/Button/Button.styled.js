@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled('button')`
+export const ButtonStyled = styled('button')`
   padding-block: 8px;
   padding-inline: 16px;
 

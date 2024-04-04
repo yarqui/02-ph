@@ -6,7 +6,7 @@ export const Container = styled('div')`
   justify-content: center;
   gap: 16px;
 
-  max-width: 300px;
+  width: 400px;
   padding-inline: 24px;
   margin-inline: auto;
   margin-block: 24px;
