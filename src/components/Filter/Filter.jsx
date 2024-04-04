@@ -9,7 +9,7 @@ class Filter extends PureComponent {
 
     return (
       <>
-        <label htmlFor="filter">Find contacts by name</label>
+        <label htmlFor="filter">Find contacts by nameузфслф</label>
         <input
           type="text"
           name="filter"

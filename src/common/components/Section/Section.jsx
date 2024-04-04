@@ -1,13 +1,12 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Heading from '../Heading/Heading';
 import { SectionStyled } from './Section.styled';
 
 class Section extends PureComponent {
-  // static propTypes = {
-  //   title: PropTypes.string.isRequired,
-  // };
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+  };
 
   render() {
     const { children } = this.props;
