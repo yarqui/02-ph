@@ -8,13 +8,16 @@ class Filter extends PureComponent {
     const { filter } = this.props;
 
     return (
-      <input
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={e => this.props.filterContacts(e.target.value)}
-        required
-      />
+      <>
+        <label htmlFor="filter">Find contacts by name</label>
+        <input
+          type="text"
+          name="filter"
+          value={filter}
+          onChange={e => this.props.filterContacts(e.target.value)}
+          required
+        />
+      </>
     );
   }
 }
