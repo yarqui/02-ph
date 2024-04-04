@@ -20,7 +20,7 @@ class ContactForm extends PureComponent {
   };
 
   handleInputChange = e => {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 

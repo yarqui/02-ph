@@ -5,7 +5,10 @@ import { SectionStyled } from './Section.styled';
 
 class Section extends PureComponent {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
   };
 
   render() {
