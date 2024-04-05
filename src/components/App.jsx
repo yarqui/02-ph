@@ -25,7 +25,7 @@ class App extends PureComponent {
   contactNameExists = name => {
     const { contacts } = this.state;
 
-    return contacts.some(
+    return contacts?.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
   };
@@ -57,12 +57,14 @@ class App extends PureComponent {
   };
 
   deleteContact = id => {
-    const { contacts } = this.state;
+    this.setState(prevState => {
+      const updatedContacts = prevState.contacts?.filter(
+        contact => contact.id !== id
+      );
 
-    const updatedContacts = contacts?.filter(contact => contact.id !== id);
-
-    this.setState({
-      contacts: updatedContacts,
+      return {
+        contacts: updatedContacts,
+      };
     });
   };
 
