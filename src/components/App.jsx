@@ -25,7 +25,9 @@ class App extends PureComponent {
   contactNameExists = name => {
     const { contacts } = this.state;
 
-    return contacts.some(contact => contact.name === name);
+    return contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
   };
 
   filterContacts = filterQuery => {
