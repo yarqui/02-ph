@@ -87,10 +87,3 @@ class App extends PureComponent {
 }
 
 export default App;
-
-// App - state: contacts, filter // handleAddContact / handleFilter / handleDeleteContact
-// ContactForm - state: name, tel // onSubmit={handleSubmitContact}
-// ContactList - props: filteredContacts // onDelete
-// Filter - // onChange of input - handleFilter
-//
-//
