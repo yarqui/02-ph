@@ -2,6 +2,9 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from 'common/components/Button/Button';
+import { InputStyled } from 'components/Input/Input.styled';
+import { Form } from './ContactForm.styled';
+import Label from 'components/Label/Label';
 
 const INITIAL_STATE = {
   name: '',
@@ -39,9 +42,9 @@ class ContactForm extends PureComponent {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
+      <Form onSubmit={this.handleSubmit}>
+        <Label htmlFor="name" label="Name" />
+        <InputStyled
           id="name"
           type="text"
           name="name"
@@ -52,8 +55,8 @@ class ContactForm extends PureComponent {
           required
         />
 
-        <label htmlFor="number">Number</label>
-        <input
+        <Label htmlFor="number" label="Number" />
+        <InputStyled
           id="number"
           type="number"
           name="number"
@@ -64,7 +67,7 @@ class ContactForm extends PureComponent {
         />
 
         <Button type="submit" label="Add contact" />
-      </form>
+      </Form>
     );
   }
 }

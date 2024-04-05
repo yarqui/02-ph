@@ -2,6 +2,8 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from 'common/components/Button/Button';
+import { ContactListItemStyled } from './ContactListItem.styled';
+import { ContactWrap } from 'components/ContactWrap/ContactWrap.styled';
 
 class ContactListItem extends PureComponent {
   static propTypes = {
@@ -14,15 +16,17 @@ class ContactListItem extends PureComponent {
   render() {
     const { id, name, number, deleteContact } = this.props;
     return (
-      <li>
-        <span>{name}</span>
-        <span>{number}</span>
+      <ContactListItemStyled>
+        <ContactWrap>
+          <span>{name}</span>
+          <span>{number}</span>
+        </ContactWrap>
         <Button
           type="button"
           label="Delete"
           onClick={() => deleteContact(id)}
         />
-      </li>
+      </ContactListItemStyled>
     );
   }
 }

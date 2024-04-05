@@ -1,5 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { InputStyled } from 'components/Input/Input.styled';
+import Label from 'components/Label/Label';
 
 class Filter extends PureComponent {
   static propTypes = { filterContacts: PropTypes.func.isRequired };
@@ -9,8 +11,8 @@ class Filter extends PureComponent {
 
     return (
       <>
-        <label htmlFor="filter">Find contacts by nameузфслф</label>
-        <input
+        <Label htmlFor="filter" label="Find contacts by name" />
+        <InputStyled
           type="text"
           name="filter"
           value={filter}
